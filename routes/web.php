@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
+Route::post('follow/{user}', [App\Http\Controllers\FollowsController::class, 'store'])->name('follow.store');
+
+Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->name('posts.show');
 Route::get('/p/create', [App\Http\Controllers\PostsController::class, 'create'])->name('posts.create');
 Route::get('/p/{post}', [App\Http\Controllers\PostsController::class, 'show'])->name('posts.show');
 Route::post('/p', [App\Http\Controllers\PostsController::class, 'store'])->name('posts.store');
